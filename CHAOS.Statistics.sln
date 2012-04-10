@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHAOS.Statistics.Data.EF", "src\app\CHAOS.Statistics.Data.EF\CHAOS.Statistics.Data.EF.csproj", "{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1F3BE7A8-B824-4C60-A882-FF07EDC962EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "app", "app", "{7DB18EA1-D57C-4A8F-AECD-5B545EB6BC19}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{97645FC2-13BA-4559-83F7-D4B7A697EB37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHAOS.Statistics.Module.Standard", "src\app\CHAOS.Statistics.Module.Standard\CHAOS.Statistics.Module.Standard.csproj", "{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistics", "Statistics", "{5F124CC6-5359-450C-9DCE-A4266602F24A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHAOS.Statistics.StandardTest", "src\test\CHAOS.Statistics.StandardTest\CHAOS.Statistics.StandardTest.csproj", "{D0884A4D-8CF6-4976-BF82-E42EBE44E48A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHAOS.Statistics.Data.DTO", "src\app\CHAOS.Statistics.Data.DTO\CHAOS.Statistics.Data.DTO.csproj", "{E6109562-9882-4994-BE17-EB855FB7F302}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0884A4D-8CF6-4976-BF82-E42EBE44E48A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0884A4D-8CF6-4976-BF82-E42EBE44E48A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0884A4D-8CF6-4976-BF82-E42EBE44E48A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0884A4D-8CF6-4976-BF82-E42EBE44E48A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6109562-9882-4994-BE17-EB855FB7F302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6109562-9882-4994-BE17-EB855FB7F302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6109562-9882-4994-BE17-EB855FB7F302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6109562-9882-4994-BE17-EB855FB7F302}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7DB18EA1-D57C-4A8F-AECD-5B545EB6BC19} = {1F3BE7A8-B824-4C60-A882-FF07EDC962EE}
+		{97645FC2-13BA-4559-83F7-D4B7A697EB37} = {1F3BE7A8-B824-4C60-A882-FF07EDC962EE}
+		{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3} = {7DB18EA1-D57C-4A8F-AECD-5B545EB6BC19}
+		{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081} = {7DB18EA1-D57C-4A8F-AECD-5B545EB6BC19}
+		{E6109562-9882-4994-BE17-EB855FB7F302} = {7DB18EA1-D57C-4A8F-AECD-5B545EB6BC19}
+		{5F124CC6-5359-450C-9DCE-A4266602F24A} = {97645FC2-13BA-4559-83F7-D4B7A697EB37}
+		{D0884A4D-8CF6-4976-BF82-E42EBE44E48A} = {5F124CC6-5359-450C-9DCE-A4266602F24A}
+	EndGlobalSection
+EndGlobal

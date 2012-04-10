@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="statisticsModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="statisticsModelStoreContainer">
+          <EntitySet Name="daystats_getinfo" EntityType="statisticsModel.Store.daystats_getinfo" store:Type="Views" store:Schema="statistics" store:Name="daystats_getinfo">
+            <DefiningQuery>SELECT
+      `daystats_getinfo`.`NumberOfViews`, 
+      `daystats_getinfo`.`Timestamp`
+      FROM `daystats_getinfo` AS `daystats_getinfo`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="daystats_getobject_entity" EntityType="statisticsModel.Store.daystats_getobject_entity" store:Type="Views" store:Schema="statistics" store:Name="daystats_getobject_entity">
+            <DefiningQuery>SELECT
+      `daystats_getobject_entity`.`NumberOfViews`, 
+      `daystats_getobject_entity`.`StatsObjectID`, 
+      `daystats_getobject_entity`.`Identifier`, 
+      `daystats_getobject_entity`.`ObjectTypeID`, 
+      `daystats_getobject_entity`.`ObjectTitle`
+      FROM `daystats_getobject_entity` AS `daystats_getobject_entity`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="daystats_gettotal_entity" EntityType="statisticsModel.Store.daystats_gettotal_entity" store:Type="Views" store:Schema="statistics" store:Name="daystats_gettotal_entity">
+            <DefiningQuery>SELECT
+      `daystats_gettotal_entity`.`NumberOfViews`
+      FROM `daystats_gettotal_entity` AS `daystats_gettotal_entity`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="daystatsgeo_entity" EntityType="statisticsModel.Store.daystatsgeo_entity" store:Type="Views" store:Schema="statistics" store:Name="daystatsgeo_entity">
+            <DefiningQuery>SELECT
+      `daystatsgeo_entity`.`NumberOfViews`, 
+      `daystatsgeo_entity`.`GeoString`
+      FROM `daystatsgeo_entity` AS `daystatsgeo_entity`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="durationsession_entity" EntityType="statisticsModel.Store.durationsession_entity" store:Type="Views" store:Schema="statistics" store:Name="durationsession_entity">
+            <DefiningQuery>SELECT
+      `durationsession_entity`.`Duration`, 
+      `durationsession_entity`.`ObjectSessionDate`
+      FROM `durationsession_entity` AS `durationsession_entity`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="hourstats_entity" EntityType="statisticsModel.Store.hourstats_entity" store:Type="Views" store:Schema="statistics" store:Name="hourstats_entity">
+            <DefiningQuery>SELECT
+      `hourstats_entity`.`Hour`, 
+      `hourstats_entity`.`Count`
+      FROM `hourstats_entity` AS `hourstats_entity`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="hourstats_getobjects_entity" EntityType="statisticsModel.Store.hourstats_getobjects_entity" store:Type="Views" store:Schema="statistics" store:Name="hourstats_getobjects_entity">
+            <DefiningQuery>SELECT
+      `hourstats_getobjects_entity`.`NumberOfViews`, 
+      `hourstats_getobjects_entity`.`StatsObjectID`, 
+      `hourstats_getobjects_entity`.`Identifier`, 
+      `hourstats_getobjects_entity`.`ObjectTypeID`, 
+      `hourstats_getobjects_entity`.`ObjectTitle`
+      FROM `hourstats_getobjects_entity` AS `hourstats_getobjects_entity`</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.daystats_getinfo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="daystats_getinfo">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="NumberOfViews" Type="decimal" Precision="54" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.daystats_getobject_entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="daystats_getobject_entity">
+          <Key>
+            <PropertyRef Name="StatsObjectID" />
+            <PropertyRef Name="Identifier" />
+            <PropertyRef Name="ObjectTypeID" />
+          </Key>
+          <Property Name="NumberOfViews" Type="decimal" Precision="54" />
+          <Property Name="StatsObjectID" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="ObjectTypeID" Type="int" Nullable="false" />
+          <Property Name="ObjectTitle" Type="text" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.daystats_gettotal_entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="daystats_gettotal_entity">
+          <Key>
+            <PropertyRef Name="NumberOfViews" />
+          </Key>
+          <Property Name="NumberOfViews" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.daystatsgeo_entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="daystatsgeo_entity">
+          <Key>
+            <PropertyRef Name="NumberOfViews" />
+            <PropertyRef Name="GeoString" />
+          </Key>
+          <Property Name="NumberOfViews" Type="int" Nullable="false" />
+          <Property Name="GeoString" Type="varchar" Nullable="false" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.durationsession_entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="durationsession_entity">
+          <Key>
+            <PropertyRef Name="Duration" />
+          </Key>
+          <Property Name="Duration" Type="int" Nullable="false" />
+          <Property Name="ObjectSessionDate" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.hourstats_entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="hourstats_entity">
+          <Key>
+            <PropertyRef Name="Hour" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Name="Hour" Type="int" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'def.statistics.hourstats_getobjects_entity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="hourstats_getobjects_entity">
+          <Key>
+            <PropertyRef Name="StatsObjectID" />
+            <PropertyRef Name="Identifier" />
+            <PropertyRef Name="ObjectTypeID" />
+          </Key>
+          <Property Name="NumberOfViews" Type="decimal" Precision="54" />
+          <Property Name="StatsObjectID" Type="int" Nullable="false" />
+          <Property Name="Identifier" Type="varchar" Nullable="false" MaxLength="128" />
+          <Property Name="ObjectTypeID" Type="int" Nullable="false" />
+          <Property Name="ObjectTitle" Type="text" />
+        </EntityType>
+        <Function Name="DayStatsGeo_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="statsObjectIdentifierList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortDirection" Type="varchar" Mode="In" />
+          <Parameter Name="geoType" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DayStats_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="statsObjectIdentifierList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="DayStats_GetObjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortDirection" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DayStats_GetTotal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="statsObjectIdentifierList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="DayStats_Set" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="StatsObjectID" Type="int" Mode="In" />
+          <Parameter Name="ChannelID" Type="int" Mode="In" />
+          <Parameter Name="EventTypeID" Type="int" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DurationSession_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="statsObjectIdentifierList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="DurationSession_Set" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectSessionID" Type="int" Mode="In" />
+          <Parameter Name="startValue" Type="bigint" Mode="In" />
+          <Parameter Name="endValue" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="GetChannelID" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="Title" Type="varchar" Mode="In" />
+          <Parameter Name="Description" Type="varchar" Mode="In" />
+          <Parameter Name="RepositoryID" Type="int" Mode="In" />
+          <Parameter Name="Identifier" Type="varchar" Mode="In" />
+          <Parameter Name="ChannelTypeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetDateIndexID" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics" />
+        <Function Name="GetHourIndexID" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics" />
+        <Function Name="GetLocationID" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="CIty" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetObjectID" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="ObjectIdentifier" Type="varchar" Mode="In" />
+          <Parameter Name="ObjectTypeID" Type="int" Mode="In" />
+          <Parameter Name="ObjectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="ObjectTitle" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetRepositoryID" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="Identifier" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="HourStats_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="statsObjectIdentifierList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="HourStats_GetObjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="objectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="channelIDList" Type="varchar" Mode="In" />
+          <Parameter Name="objectTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="eventTypeIDList" Type="varchar" Mode="In" />
+          <Parameter Name="fromDate" Type="datetime" Mode="In" />
+          <Parameter Name="toDate" Type="datetime" Mode="In" />
+          <Parameter Name="pageIndex" Type="int" Mode="In" />
+          <Parameter Name="pageSize" Type="int" Mode="In" />
+          <Parameter Name="sortDirection" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="HourStats_Set" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="StatsObjectID" Type="int" Mode="In" />
+          <Parameter Name="ChannelID" Type="int" Mode="In" />
+          <Parameter Name="EventTypeID" Type="int" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ObjectSession_Set" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="StatsObjectID" Type="int" Mode="In" />
+          <Parameter Name="ChannelID" Type="int" Mode="In" />
+          <Parameter Name="EventTypeID" Type="int" Mode="In" />
+          <Parameter Name="UserSessionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="StatsObject_Set" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="statistics">
+          <Parameter Name="RepositoryIdentifier" Type="varchar" Mode="In" />
+          <Parameter Name="ObjectIdentifier" Type="varchar" Mode="In" />
+          <Parameter Name="ObjectTypeID" Type="int" Mode="In" />
+          <Parameter Name="ObjectCollectionID" Type="int" Mode="In" />
+          <Parameter Name="ChannelIdentifier" Type="varchar" Mode="In" />
+          <Parameter Name="ChannelTypeID" Type="int" Mode="In" />
+          <Parameter Name="EventTypeID" Type="int" Mode="In" />
+          <Parameter Name="ObjectTitle" Type="varchar" Mode="In" />
+          <Parameter Name="IP" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="Country" Type="varchar" Mode="In" />
+          <Parameter Name="UserSessionID" Type="int" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="statisticsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="statisticsEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="DayStats_GetTotal" EntitySet="daystats_gettotal_entity" ReturnType="Collection(statisticsModel.daystats_gettotal_entity)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="statsObjectIdentifierList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="DayStats_Get" EntitySet="daystats_getinfo" ReturnType="Collection(statisticsModel.daystats_getinfo)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="statsObjectIdentifierList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="DayStats_GetObjects" EntitySet="daystats_getobject_entity" ReturnType="Collection(statisticsModel.daystats_getobject_entity)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortDirection" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="StatsObject_Set" ReturnType="Collection(Int32)">
+            <Parameter Name="RepositoryIdentifier" Mode="In" Type="String" />
+            <Parameter Name="ObjectIdentifier" Mode="In" Type="String" />
+            <Parameter Name="ObjectTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="ObjectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="ChannelIdentifier" Mode="In" Type="String" />
+            <Parameter Name="ChannelTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="EventTypeID" Mode="In" Type="Int32" />
+            <Parameter Name="ObjectTitle" Mode="In" Type="String" />
+            <Parameter Name="IP" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="UserSessionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="daystats_getinfo" EntityType="statisticsModel.daystats_getinfo" />
+          <EntitySet Name="hourstats_entity" EntityType="statisticsModel.hourstats_entity" />
+          <FunctionImport Name="HourStats_Get" EntitySet="hourstats_entity" ReturnType="Collection(statisticsModel.hourstats_entity)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="statsObjectIdentifierList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="daystats_getobject_entity" EntityType="statisticsModel.daystats_getobject_entity" />
+          <EntitySet Name="daystats_gettotal_entity" EntityType="statisticsModel.daystats_gettotal_entity" />
+          <FunctionImport Name="DurationSession_Set" ReturnType="Collection(Int32)">
+            <Parameter Name="objectSessionID" Mode="In" Type="Int32" />
+            <Parameter Name="startValue" Mode="In" Type="Int64" />
+            <Parameter Name="endValue" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <EntitySet Name="daystatsgeo_entity" EntityType="statisticsModel.daystatsgeo_entity" />
+          <FunctionImport Name="DayStatsGeo_Get" EntitySet="daystatsgeo_entity" ReturnType="Collection(statisticsModel.daystatsgeo_entity)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="statsObjectIdentifierList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortDirection" Mode="In" Type="String" />
+            <Parameter Name="geoType" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="HourStats_GetObjects" EntitySet="hourstats_getobjects_entity" ReturnType="Collection(statisticsModel.hourstats_getobjects_entity)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+            <Parameter Name="pageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="pageSize" Mode="In" Type="Int32" />
+            <Parameter Name="sortDirection" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="durationsession_entity" EntityType="statisticsModel.durationsession_entity" />
+          <FunctionImport Name="DurationSession_Get" EntitySet="durationsession_entity" ReturnType="Collection(statisticsModel.durationsession_entity)">
+            <Parameter Name="objectCollectionID" Mode="In" Type="Int32" />
+            <Parameter Name="channelIDList" Mode="In" Type="String" />
+            <Parameter Name="objectTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="eventTypeIDList" Mode="In" Type="String" />
+            <Parameter Name="statsObjectIdentifierList" Mode="In" Type="String" />
+            <Parameter Name="fromDate" Mode="In" Type="DateTime" />
+            <Parameter Name="toDate" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="hourstats_getobjects_entity" EntityType="statisticsModel.hourstats_getobjects_entity" />
+        </EntityContainer>
+        <ComplexType Name="DayStats_GetTotal_Result" />
+        <ComplexType Name="DayStats_Get_Result" />
+        <ComplexType Name="DayStats_GetObjects_Result" />
+        <ComplexType Name="DayStats_Get_Result1" />
+        <EntityType Name="daystats_getinfo">
+          <Key>
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="Decimal" Name="NumberOfViews" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hourstats_entity">
+          <Key>
+            <PropertyRef Name="Hour" />
+            <PropertyRef Name="Count" />
+          </Key>
+          <Property Type="Int32" Name="Hour" Nullable="false" />
+          <Property Type="Int32" Name="Count" Nullable="false" />
+        </EntityType>
+        <EntityType Name="daystats_getobject_entity">
+          <Key>
+            <PropertyRef Name="StatsObjectID" />
+            <PropertyRef Name="Identifier" />
+            <PropertyRef Name="ObjectTypeID" />
+          </Key>
+          <Property Type="Decimal" Name="NumberOfViews" />
+          <Property Type="Int32" Name="StatsObjectID" Nullable="false" />
+          <Property Type="String" Name="Identifier" Nullable="false" />
+          <Property Type="Int32" Name="ObjectTypeID" Nullable="false" />
+          <Property Type="String" Name="ObjectTitle" />
+        </EntityType>
+        <EntityType Name="daystats_gettotal_entity">
+          <Key>
+            <PropertyRef Name="NumberOfViews" />
+          </Key>
+          <Property Type="Int32" Name="NumberOfViews" Nullable="false" />
+        </EntityType>
+        <EntityType Name="daystatsgeo_entity">
+          <Key>
+            <PropertyRef Name="NumberOfViews" />
+            <PropertyRef Name="GeoString" />
+          </Key>
+          <Property Type="Int32" Name="NumberOfViews" Nullable="false" />
+          <Property Type="String" Name="GeoString" Nullable="false" />
+        </EntityType>
+        <EntityType Name="durationsession_entity">
+          <Key>
+            <PropertyRef Name="Duration" />
+          </Key>
+          <Property Type="Int32" Name="Duration" Nullable="false" />
+          <Property Type="DateTime" Name="ObjectSessionDate" />
+        </EntityType>
+        <EntityType Name="hourstats_getobjects_entity">
+          <Key>
+            <PropertyRef Name="StatsObjectID" />
+            <PropertyRef Name="Identifier" />
+            <PropertyRef Name="ObjectTypeID" />
+          </Key>
+          <Property Type="Decimal" Name="NumberOfViews" />
+          <Property Type="Int32" Name="StatsObjectID" Nullable="false" />
+          <Property Type="String" Name="Identifier" Nullable="false" />
+          <Property Type="Int32" Name="ObjectTypeID" Nullable="false" />
+          <Property Type="String" Name="ObjectTitle" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="statisticsModelStoreContainer" CdmEntityContainer="statisticsEntities" >
+          <FunctionImportMapping FunctionImportName="DayStats_GetTotal" FunctionName="statisticsModel.Store.DayStats_GetTotal">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DayStats_Get" FunctionName="statisticsModel.Store.DayStats_Get">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DayStats_GetObjects" FunctionName="statisticsModel.Store.DayStats_GetObjects" >
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="StatsObject_Set" FunctionName="statisticsModel.Store.StatsObject_Set" />
+          <EntitySetMapping Name="daystats_getinfo">
+            <EntityTypeMapping TypeName="statisticsModel.daystats_getinfo">
+              <MappingFragment StoreEntitySet="daystats_getinfo">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="NumberOfViews" ColumnName="NumberOfViews" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hourstats_entity">
+            <EntityTypeMapping TypeName="statisticsModel.hourstats_entity">
+              <MappingFragment StoreEntitySet="hourstats_entity">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Hour" ColumnName="Hour" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="HourStats_Get" FunctionName="statisticsModel.Store.HourStats_Get" />
+          <EntitySetMapping Name="daystats_getobject_entity">
+            <EntityTypeMapping TypeName="statisticsModel.daystats_getobject_entity">
+              <MappingFragment StoreEntitySet="daystats_getobject_entity">
+                <ScalarProperty Name="ObjectTitle" ColumnName="ObjectTitle" />
+                <ScalarProperty Name="ObjectTypeID" ColumnName="ObjectTypeID" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="StatsObjectID" ColumnName="StatsObjectID" />
+                <ScalarProperty Name="NumberOfViews" ColumnName="NumberOfViews" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="daystats_gettotal_entity">
+            <EntityTypeMapping TypeName="statisticsModel.daystats_gettotal_entity">
+              <MappingFragment StoreEntitySet="daystats_gettotal_entity">
+                <ScalarProperty Name="NumberOfViews" ColumnName="NumberOfViews" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DurationSession_Set" FunctionName="statisticsModel.Store.DurationSession_Set" />
+          <EntitySetMapping Name="daystatsgeo_entity">
+            <EntityTypeMapping TypeName="statisticsModel.daystatsgeo_entity">
+              <MappingFragment StoreEntitySet="daystatsgeo_entity">
+                <ScalarProperty Name="GeoString" ColumnName="GeoString" />
+                <ScalarProperty Name="NumberOfViews" ColumnName="NumberOfViews" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DayStatsGeo_Get" FunctionName="statisticsModel.Store.DayStatsGeo_Get" />
+          <FunctionImportMapping FunctionImportName="HourStats_GetObjects" FunctionName="statisticsModel.Store.HourStats_GetObjects" />
+          <EntitySetMapping Name="durationsession_entity">
+            <EntityTypeMapping TypeName="statisticsModel.durationsession_entity">
+              <MappingFragment StoreEntitySet="durationsession_entity">
+                <ScalarProperty Name="ObjectSessionDate" ColumnName="ObjectSessionDate" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DurationSession_Get" FunctionName="statisticsModel.Store.DurationSession_Get" />
+          <EntitySetMapping Name="hourstats_getobjects_entity">
+            <EntityTypeMapping TypeName="statisticsModel.hourstats_getobjects_entity">
+              <MappingFragment StoreEntitySet="hourstats_getobjects_entity">
+                <ScalarProperty Name="ObjectTitle" ColumnName="ObjectTitle" />
+                <ScalarProperty Name="ObjectTypeID" ColumnName="ObjectTypeID" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
+                <ScalarProperty Name="StatsObjectID" ColumnName="StatsObjectID" />
+                <ScalarProperty Name="NumberOfViews" ColumnName="NumberOfViews" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="StatisticsDB" >
+        <EntityTypeShape EntityType="statisticsModel.daystats_getinfo" Width="2.125" PointX="0.75" PointY="0.75" Height="1.4033821614583331" />
+        <EntityTypeShape EntityType="statisticsModel.hourstats_entity" Width="1.5" PointX="3.375" PointY="0.75" Height="1.4033821614583335" />
+        <EntityTypeShape EntityType="statisticsModel.daystats_getobject_entity" Width="2.875" PointX="0.75" PointY="3.75" Height="1.9802864583333322" />
+        <EntityTypeShape EntityType="statisticsModel.daystats_gettotal_entity" Width="3.375" PointX="4.375" PointY="3.75" Height="1.2110807291666674" />
+        <EntityTypeShape EntityType="statisticsModel.daystatsgeo_entity" Width="1.5" PointX="5.375" PointY="0.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="statisticsModel.durationsession_entity" Width="3.125" PointX="8.875" PointY="3.25" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="statisticsModel.hourstats_getobjects_entity" Width="1.5" PointX="0.75" PointY="6.75" Height="1.9802864583333317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

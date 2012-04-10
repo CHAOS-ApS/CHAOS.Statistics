@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D0884A4D-8CF6-4976-BF82-E42EBE44E48A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CHAOS.Statistics.StandardTest</RootNamespace>
+    <AssemblyName>CHAOS.Statistics.StandardTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Geckon">
+      <HintPath>..\..\..\lib\Geckon.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\tools\nunit\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Portal">
+      <HintPath>..\..\..\lib\Portal.dll</HintPath>
+    </Reference>
+    <Reference Include="PortalTest">
+      <HintPath>..\..\..\lib\PortalTest.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticsBaseTest.cs" />
+    <Compile Include="StatisticsModuleTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\app\CHAOS.Statistics.Data.DTO\CHAOS.Statistics.Data.DTO.csproj">
+      <Project>{E6109562-9882-4994-BE17-EB855FB7F302}</Project>
+      <Name>CHAOS.Statistics.Data.DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\CHAOS.Statistics.Data.EF\CHAOS.Statistics.Data.EF.csproj">
+      <Project>{B354CA50-ADD0-47A0-B3F3-CA95C293E5F3}</Project>
+      <Name>CHAOS.Statistics.Data.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\app\CHAOS.Statistics.Module.Standard\CHAOS.Statistics.Module.Standard.csproj">
+      <Project>{3AF61295-D0AB-4AF8-AAFE-90CD5B14F081}</Project>
+      <Name>CHAOS.Statistics.Module.Standard</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,75 @@
+6.4.4
+- Configured DataGridView to use VirtualMode and added some required events, so it can save back 
+  to the data source the grid changes (MySQL bug #61617, Oracle bug #12711786).
+- Modified ASP.NET membership provider to create and query all related tables using lowercase names (MySQL bug #61108, Oracle bug #12702009).
+- Modified MySqlDataReader.Close to use Default behavior when clearing remaining resultsets (MySQL bug #61690, Oracle bug #12723423).
+- Modified MySqlScript to enable correct processing of the DELIMITER command when not followed by 
+  a new line (MySQL bug #61680, Oracle bug #12732279).
+- On Model First changed column types generated in sql script to produce more suitable MySql types (MySql bug #59244, Oracle bug #12707104).
+- Modified MySqlProviderServices.GetDbProviderManifestToken to use InvariantCulture when parsing the
+  server version (MySQL bug #61901, Oracle bug #12831581)
+- Added changes to correctly generate database on code first and test case, project MySql.Data.Entity.ModelFirst.Tests. While testing the fix corrected 
+  another issue of mysql generation sql scripts using "Name" instead of "Table" property to
+  get the name of MySQL table to issue (MySQL bug #61230, Oracle bug #12728085).
+- Modified NativeDriver.AuthenticateNew to only execute ReadOK once, having the parameter depend on
+  the value of packet.IsLastPacket (MySQL bug #61806, Oracle bug #12853286).
+- Modified MySqlStream and MySqlPacket to always use UTF8 to read packages when MySQL Server is version 5.5+ (MySQL Bug #61687, Oracle Bug #12889085).
+- Included type String (for MySQL char) on Field.IsTextField so it can apply logic to correct 
+  DataColumn.MaxLength (MySQL bug #62094, Oracle bug #12860224).
+- Fix for Windows Authentication server side fix (Oracle bug #12944747).
+- Modified MySQLParameter constructor to correctly assign IsNullable, Precision and Scale properties
+  (MySQL bug #62194, Oracle bug #12999162).
+- Moved Visual Studio 2010 integration registry entries from WiX installer to a pkgdef file.
+- Added upgrade ability to installer
+- Modified MySqlProviderServices.GetDbProviderManifestToken to use InvariantCulture when parsing the
+  server version (MySQL bug #61901, Oracle bug #12831581).
+- Added changes to support some corner cases with nested TableFragments with limit clause (Take Linq operator) (MySQL bug #61729, Oracle bug #12776598).
+- Modified ProviderServices classes to generate text types when using variable length string types (MySQL bug #54915, Oracle bug #12848277).
+- Fix for customer issue: bad management of alias in SelectStatement (bug #12807366).
+
+6.4.3 (ga)
+- Modified SqlFragment.QuoteIdentifier to add MySQL quotes around identifiers (MySQL bug #61635, Oracle bug #12707285).
+- Modified the SchemaDefinition-5.5.ssdl to treat char(36) columns as GUID (MySQL bug #61657, Oracle bug #12708208).
+
+6.4.2 (rc)
+- Fixed Entity Framework provider GROUP BY clause generation by adding all group by keys to the SELECT statement (MySQL bug #46742, Oracle bug #12622129).
+- Modified ProviderManifest.xml to map TIMESTAMP db fields to the DateTime .NET type (MySQL bug #55351, Oracle bug #12652602).
+- Modified MySqlConnection.BeginTransaction to throw a NotSupportedException when Snapshot isolation level 
+  is requested (MySQL bug #61589, Oracle bug #12698020).
+
+6.4.1 (beta)
+- modified schema1.sql in MySql.Web to remove ENGINE declaration on table creation (Oracle bug #12311974).
+- fixed performance issue with executing stored procedures with output parameters
+  (MySQL bug #60366, Oracle bug#12425959)
+- Introduced more detailed exceptions for invalid connection strings errors (MySQL bug#44654, MySQL bug#53076).
+- Introduced the real NUnit framework to the CF test suite and fixed issues on BaseTest to properly run with CF libraries. 
+- Modified MySql.Data.Entity.ProviderServices to use the correct schema definition file when server is 5.5 or greater (Oracle bug #12407444).
+- Introduced a new unit test to ensure a commit will not timeout after a heavly load of inserts (MySQL bug #58004).
+- fixed ISSchemaProvider to use the information schema to retrieve parameter metadata when running 
+  against server 5.5.3 or greater (MySQL bug #48007, Oracle bug #12539685).
+- Fixed MySqlProviderManifest.GetStoreSchemaDescription() to return the correct schema definition depending
+  on the server version.
+- Fixed Driver creation to not crash when it can't instantiate MySqlTrace type because of missing permissions (MySQL bug #59202, Oracle bug #12548114).
+- Added entity framework support for MySQL Server Round(X, D) function (MySQL bug #58552, Oracle bug #11765569).
+- Introduced a connection string check and exception to notify that it is not possible to use SSL related 
+  keywords when running on the Compact Framework. Also all SSL related keywords in ConnectionStringBuilder
+  are now hidden when running on the Compact Framework (MySQL bug #60600).
+- Fixed MembershipProvider to only return exact matches when calling GetUser(string username) and 
+  GetUserNameByEmail (MySQL bug #61027, Oracle bug #12562287).
+- added the ability to raise a join on the right side of a join to a derived table in EF code generation (bug #48791)
+- Reintroduced implementations for DbCreateDatabase, DbDatabaseExists, DbDeleteDatabase and DbCreateDatabaseScript 
+  in MySqlProviderServices. In this update none of those methods require access to the mysql database (MySQL bug #59168, Oracle bug #11766128).
+- Modified EFMySqlDataReader to read byte[] values as booleans when the server incorrectly reports bits as binaries 
+  when they are members of internal EF UNIONS (MySQL bug #60652, Oracle bug #12593193).
+- Modified Connection.Open() to not reuse existing driver instance when that instance is closed. Also made Connection.Abort() 
+  always close the current driver, even if the connection is pooled. (MySQL bug #58316, Oracle bug #12613102).
+- Added Visual Studio DDEX support for Compact Framework projects (MySQL bug #54607, Oracle bug #12605152).  
+- Added Replication connection string option to indicate that the connection is using read-only replicated servers
+  This is the first step toward better replication support.
+
+6.4.0
+- Implemented Cache Server Properties connection option
+- Implementd Windows authentication when used against a 5.5 server
+- Implementd table caching
+- Introduced workaround to unexpected query aborts (server 5.1+) when executing a datareader after a command.Cancel() (MySQL bug#60541).
+- Fixed SetSite issues with Visual Studio 2010 integration (MySQL bug#60723, Oracle bug #12394470)
