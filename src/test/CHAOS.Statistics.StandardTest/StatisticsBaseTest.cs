@@ -15,7 +15,7 @@ namespace CHAOS.Statistics.StandardTest
             //base.SetUp();
 
             StatisticsModule = new CHAOS.Statistics.Module.Standard.StatisticsModule();
-            StatisticsModule.Init(XElement.Parse("<Settings ConnectionString=\"metadata=res://*/StatisticsDB.csdl|res://*/StatisticsDB.ssdl|res://*/StatisticsDB.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=localhost;User Id=root;password=pbvu7000;database=statistics&quot;\" providerName=\"System.Data.EntityClient\"/>"));
+            StatisticsModule.Initialize("<Settings ConnectionString=\"metadata=res://*/StatisticsDB.csdl|res://*/StatisticsDB.ssdl|res://*/StatisticsDB.msl;provider=MySql.Data.MySqlClient;provider connection string=&quot;server=localhost;User Id=root;password=pbvu7000;database=statistics&quot;\" providerName=\"System.Data.EntityClient\"/>");
         }
 
     }

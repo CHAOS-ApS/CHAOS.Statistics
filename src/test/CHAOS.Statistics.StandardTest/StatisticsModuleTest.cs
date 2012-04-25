@@ -18,9 +18,9 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_SetStats()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifier- test", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifier- test", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            Assert.Greater(returnValue, 0);
+            Assert.Greater(returnValue.ObjectSessionID, 0);
         }
 
         //[Test]
@@ -43,7 +43,7 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_Get_DayStats()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "test2403", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "test2403", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
             var result = StatisticsModule.DayStats_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] {"test2403", "test2" }, DateTime.Now.AddDays(-1), DateTime.Now);
 
@@ -53,7 +53,7 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Shoud_Get_DayStats_Objects()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
             var result = StatisticsModule.DayStats_GetObjects(1, null, null, new int[] { 1, 2, 3, 4, 5 }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 25, "ASC");
 
@@ -70,7 +70,7 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_Get_DayStatsTotal()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
             var result = StatisticsModule.DayStats_GetTotal(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest, test2" }, DateTime.Now.AddDays(-1), DateTime.Now);
 
@@ -80,7 +80,7 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Shoud_Get_DayStatsGeo()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
             var resultCity = StatisticsModule.DayStatsGeo_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest,test" }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "City");
 
@@ -101,7 +101,7 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_Get_HourStats()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
             var result = StatisticsModule.HourStats_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest,test" }, DateTime.Now.AddHours(-1), DateTime.Now);
 
@@ -111,9 +111,9 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_Get_HourStats_Objects()
         {
-            int returnValue = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            int returnValue2 = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest99", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var returnValue2 = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest99", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
             var result = StatisticsModule.HourStats_GetObjects(1, null, null, new int[] { 1, 2, 3, 4, 5 }, DateTime.Now.AddHours(-1), DateTime.Now, 0, 25, "ASC");
 
@@ -132,15 +132,15 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_Set_DurationSession()
         {
-            int objectSessionID = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var objectSessionID = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            int returnValue = StatisticsModule.DurationSession_Set(objectSessionID, 100, 1000);
+            int returnValue = StatisticsModule.DurationSession_Set(objectSessionID.ObjectSessionID, 100, 1000);
 
-            int returnValue2 = StatisticsModule.DurationSession_Set(objectSessionID, 100, 2000);
+            int returnValue2 = StatisticsModule.DurationSession_Set(objectSessionID.ObjectSessionID, 100, 2000);
 
-            int returnValue3 = StatisticsModule.DurationSession_Set(objectSessionID, 600, 1000);
+            int returnValue3 = StatisticsModule.DurationSession_Set(objectSessionID.ObjectSessionID, 600, 1000);
 
-            int returnValue4 = StatisticsModule.DurationSession_Set(objectSessionID, 800, 2000);
+            int returnValue4 = StatisticsModule.DurationSession_Set(objectSessionID.ObjectSessionID, 800, 2000);
 
             // Assert that durationSessionID is returned
             Assert.Greater(returnValue, 0);
@@ -155,9 +155,9 @@ namespace CHAOS.Statistics.StandardTest
         [Test]
         public void Should_Get_Duration()
         {
-            int objectSessionID = StatisticsModule.StatsObject_Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
+            var objectSessionID = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            int returnValue = StatisticsModule.DurationSession_Set(objectSessionID, 100, 1000);
+            var returnValue = StatisticsModule.DurationSession_Set(objectSessionID.ObjectSessionID, 100, 1000);
 
             var result = StatisticsModule.DurationSession_Get(1, null, null, null, null, DateTime.Now.AddDays(-1), DateTime.Now);
 

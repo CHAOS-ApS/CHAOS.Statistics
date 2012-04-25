@@ -6,6 +6,15 @@ namespace CHAOS.Statistics.Data.EF
 {
     public static class ExtentionMethods
     {
+
+        #region StatsObject
+        public static DTO.StatsObject ToDTO(this int objectSesstionID)
+        {
+            return new DTO.StatsObject(objectSesstionID);
+        }
+
+        #endregion
+
         #region DayStats
         public static IEnumerable<DTO.DayStats> ToDTO(this IEnumerable<daystats_getinfo> daystatsGetInfos)
         {

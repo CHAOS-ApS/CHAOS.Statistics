@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Geckon.Serialization;
-using Geckon.Portal.Data.Result.Standard;
+using CHAOS.Portal.DTO.Standard;
+using CHAOS.Serialization;
 
 namespace CHAOS.Statistics.Data.DTO
 {

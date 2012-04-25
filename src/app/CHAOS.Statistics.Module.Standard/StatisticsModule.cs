@@ -10,18 +10,16 @@ using System.Xml.Linq;
 using System.Xml.Xsl;
 using CHAOS.Statistics.Data.EF;
 using CHAOS.Statistics.Data.DTO;
-using Geckon.Portal.Core.Exception;
-using Geckon.Portal.Core.Standard.Extension;
-using Geckon.Portal.Core.Standard.Module;
-using Geckon.Portal.Data;
-using Geckon.Portal.Core.Standard;
 using System.Web;
 using System.Data.Objects;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+using CHAOS.Portal.Core.Module;
+
 
 
 namespace CHAOS.Statistics.Module.Standard
 {
+    [Module("Statistics")]
     public class StatisticsModule : AModule
     {
         #region Properties
@@ -39,76 +37,88 @@ namespace CHAOS.Statistics.Module.Standard
 
         #region Construction
 
-        public override void Init(XElement config)
+        public override void Initialize( string configuration )
         {
-            ConnectionString = config.Attribute("ConnectionString").Value;
+            ConnectionString = XDocument.Parse(configuration).Root.Attribute("ConnectionString").Value;
         }
 
         #endregion
 
         #region SetStats
-        [Datatype("Statistics", "StatsObject_Set")]
-        public int StatsObject_Set(string repositoryIdentifier, string objectIdentifier, int objectTypeID, int objectCollectionID, string channelIdentifier, int channelTypeID, int eventTypeID, string objectTitle, string IP, string city, string country, int userSessionID)
+        [Datatype("StatsObject", "Set")]
+        public StatsObject Set(string repositoryIdentifier, string objectIdentifier, int objectTypeID, int objectCollectionID, string channelIdentifier, int channelTypeID, int eventTypeID, string objectTitle, string IP, string city, string country, int userSessionID)
         {
-            if(objectIdentifier.Contains(','))
-                throw new StatisticsException("ObjectIdentifier cannot contain a comma");
-
-            if (objectIdentifier.Length > 128)
-                throw new StatisticsException("ObjectIdentifer length cannot exceed 128 chars"); 
-
-            int returnValue = Convert.ToInt32( StatisticsDataContext.StatsObject_Set(repositoryIdentifier, objectIdentifier, objectTypeID, objectCollectionID, channelIdentifier, channelTypeID, eventTypeID, objectTitle, IP, city, country, userSessionID).Single());
-
-            if (returnValue < 0)
             {
-                if (returnValue == -101)
-                    throw new StatisticsException("Repository identifier not found");
+                if (objectIdentifier.Contains(','))
+                    throw new StatisticsException("ObjectIdentifier cannot contain a comma");
 
-                if (returnValue == -102)
-                    throw new StatisticsException("Statisticslevel not set correct");
+                if (objectIdentifier.Length > 128)
+                    throw new StatisticsException("ObjectIdentifer length cannot exceed 128 chars");
 
-                if (returnValue == -103)
-                    throw new StatisticsException("ObjectCollectionID or ObjectTypeID not found");
+                int returnValue = 0;
 
-                if (returnValue == -104)
-                    throw new StatisticsException("ChannelTypeID not found");
+                try
+                {
+                    Convert.ToInt32(StatisticsDataContext.StatsObject_Set(repositoryIdentifier, objectIdentifier, objectTypeID, objectCollectionID, channelIdentifier, channelTypeID, eventTypeID, objectTitle, IP, city, country, userSessionID).Single());
+                }
+                catch (Exception ex)
+                {
+                    throw new StatisticsException("StatsObject Set failed. Possible due to uncorrect parameters. " + ex.StackTrace);
+                }
 
-                if (returnValue == -105)
-                    throw new StatisticsException("EventTypeID not found");
+                if (returnValue < 0)
+                {
+                    if (returnValue == -101)
+                        throw new StatisticsException("Repository identifier not found");
 
-                if (returnValue == -106)
-                    throw new StatisticsException("DayStats set failed");
+                    if (returnValue == -102)
+                        throw new StatisticsException("Statisticslevel not set correct");
 
-                if (returnValue == -107)
-                    throw new StatisticsException("HourStats set failed");
+                    if (returnValue == -103)
+                        throw new StatisticsException("ObjectCollectionID or ObjectTypeID not found");
 
-                if (returnValue == -108)
-                    throw new StatisticsException("DurationStats set failed");
+                    if (returnValue == -104)
+                        throw new StatisticsException("ChannelTypeID not found");
+
+                    if (returnValue == -105)
+                        throw new StatisticsException("EventTypeID not found");
+
+                    if (returnValue == -106)
+                        throw new StatisticsException("DayStats set failed");
+
+                    if (returnValue == -107)
+                        throw new StatisticsException("HourStats set failed");
+
+                    if (returnValue == -108)
+                        throw new StatisticsException("DurationStats set failed");
+                }
+        
+
+                return  ExtentionMethods.ToDTO(returnValue);
             }
-
-            return returnValue;
         }
         #endregion
 
         #region DayStats
-        [Datatype("Statistics", "DayStats_Get")]
+        [Datatype("DayStats", "Get")]
         public IEnumerable<DayStats> DayStats_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList());
         }
 
-        [Datatype("Statistics", "DayStats_GetTotal")]
+        [Datatype("DayStats", "GetTotal")]
         public DayStatsTotal DayStats_GetTotal(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime  toDate)
         {
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_GetTotal(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).Single());
         }
 
-        [Datatype("Statistics", "DayStats_GetObjects")]
+        [Datatype("DayStats", "GetObjects")]
         public IEnumerable<DayStatsObject> DayStats_GetObjects(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, DateTime fromDate, DateTime toDate, int pageIndex, int pageSize, string sortDirection )
         {
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_GetObjects(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), fromDate, toDate, pageIndex, pageSize, sortDirection).ToList());
         }
 
-        [Datatype("Statistics", "DayStatsGeo_Get")]
+        [Datatype("DayStatsGeo", "Get")]
         public IEnumerable<DayStatsGeo> DayStatsGeo_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate, int pageIndex, int pageSize, string sortDirection, string geoType)
         {
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStatsGeo_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate, pageIndex, pageSize, sortDirection, geoType).ToList());
@@ -116,13 +126,13 @@ namespace CHAOS.Statistics.Module.Standard
         #endregion
 
         #region Hourstats
-        [Datatype("Statistics", "HourStats_Get")]
+        [Datatype("HourStats", "Get")]
         public IEnumerable<HourStats> HourStats_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
             return ExtentionMethods.ToDTO( StatisticsDataContext.HourStats_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList());
         }
 
-        [Datatype("Statistics", "HourStats_GetObjects")]
+        [Datatype("HourStatsObject", "Get")]
         public IEnumerable<HourStatsObject> HourStats_GetObjects(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, DateTime fromDate, DateTime toDate, int pageIndex, int pageSize, string sortDirection )
         {
             return ExtentionMethods.ToDTO(StatisticsDataContext.HourStats_GetObjects(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), fromDate, toDate, pageIndex, pageSize, sortDirection).ToList());
@@ -130,7 +140,7 @@ namespace CHAOS.Statistics.Module.Standard
         #endregion
 
         #region DurationStats
-        [Datatype("Statistics", "DurationSession_Set")]
+        [Datatype("DurationStatsSession", "Set")]
         public int DurationSession_Set (int objectSessionID, long startValue, long endValue)
         {
             int returnValue = Convert.ToInt32( StatisticsDataContext.DurationSession_Set(objectSessionID, startValue, endValue).Single());
@@ -147,7 +157,7 @@ namespace CHAOS.Statistics.Module.Standard
             return returnValue;
         }
 
-        [Datatype("Statistics", "DurationSession_Get")]
+        [Datatype("DurationStatsSession", "Get")]
         public IEnumerable<durationsession_entity> DurationSession_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
             return StatisticsDataContext.DurationSession_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList();
