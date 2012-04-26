@@ -101,40 +101,77 @@ namespace CHAOS.Statistics.Module.Standard
 
         #region DayStats
         [Datatype("DayStats", "Get")]
-        public IEnumerable<DayStats> DayStats_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
+        public IEnumerable<DayStats> DayStats_Get(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, string statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
-            return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList());
+            try
+            {
+                return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList());
+            }
+            catch(Exception ex)
+            {
+                throw new StatisticsException("DayStats/Get", ex.InnerException);
+            }
         }
 
-        [Datatype("DayStats", "GetTotal")]
-        public DayStatsTotal DayStats_GetTotal(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime  toDate)
+        [Datatype("DayStatsTotal", "Get")]
+        public DayStatsTotal DayStats_GetTotal(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, string statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_GetTotal(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).Single());
         }
 
-        [Datatype("DayStats", "GetObjects")]
-        public IEnumerable<DayStatsObject> DayStats_GetObjects(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, DateTime fromDate, DateTime toDate, int pageIndex, int pageSize, string sortDirection )
+        [Datatype("DayStatsObject", "Get")]
+        public IEnumerable<DayStatsObject> DayStats_GetObjects(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, DateTime fromDate, DateTime toDate, int? pageIndex, int? pageSize, string sortDirection )
         {
+            if (pageIndex == null)
+                pageIndex = 0;
+
+            if (pageSize == null)
+                pageSize = 20;
+
+            if (string.IsNullOrEmpty(sortDirection))
+                sortDirection = "DESC";
+
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStats_GetObjects(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), fromDate, toDate, pageIndex, pageSize, sortDirection).ToList());
         }
 
         [Datatype("DayStatsGeo", "Get")]
-        public IEnumerable<DayStatsGeo> DayStatsGeo_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate, int pageIndex, int pageSize, string sortDirection, string geoType)
+        public IEnumerable<DayStatsGeo> DayStatsGeo_Get(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, string statsObjectIdentifierList, DateTime fromDate, DateTime toDate, int? pageIndex, int? pageSize, string sortDirection, string geoType)
         {
+            if (pageIndex == null)
+                pageIndex = 0;
+
+            if (pageSize == null)
+                pageSize = 20;
+
+            if (string.IsNullOrEmpty(sortDirection))
+                sortDirection = "DESC";
+
+            if (string.IsNullOrEmpty(geoType))
+                geoType = "City";
+
             return ExtentionMethods.ToDTO(StatisticsDataContext.DayStatsGeo_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate, pageIndex, pageSize, sortDirection, geoType).ToList());
         }
         #endregion
 
         #region Hourstats
         [Datatype("HourStats", "Get")]
-        public IEnumerable<HourStats> HourStats_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
+        public IEnumerable<HourStats> HourStats_Get(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, string statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
             return ExtentionMethods.ToDTO( StatisticsDataContext.HourStats_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList());
         }
 
         [Datatype("HourStatsObject", "Get")]
-        public IEnumerable<HourStatsObject> HourStats_GetObjects(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, DateTime fromDate, DateTime toDate, int pageIndex, int pageSize, string sortDirection )
+        public IEnumerable<HourStatsObject> HourStats_GetObjects(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, DateTime fromDate, DateTime toDate, int? pageIndex, int? pageSize, string sortDirection )
         {
+            if (pageIndex == null)
+                pageIndex = 0;
+
+            if (pageSize == null)
+                pageSize = 20;
+
+            if(string.IsNullOrEmpty(sortDirection))
+                sortDirection = "DESC";
+
             return ExtentionMethods.ToDTO(StatisticsDataContext.HourStats_GetObjects(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), fromDate, toDate, pageIndex, pageSize, sortDirection).ToList());
         }
         #endregion
@@ -158,7 +195,7 @@ namespace CHAOS.Statistics.Module.Standard
         }
 
         [Datatype("DurationStatsSession", "Get")]
-        public IEnumerable<durationsession_entity> DurationSession_Get(int objectCollectionID, int[] channelIDList, int[] objectTypeIDList, int[] eventTypeIDList, string[] statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
+        public IEnumerable<durationsession_entity> DurationSession_Get(int objectCollectionID, string channelIDList, string objectTypeIDList, string eventTypeIDList, string statsObjectIdentifierList, DateTime fromDate, DateTime toDate)
         {
             return StatisticsDataContext.DurationSession_Get(objectCollectionID, IsNull(channelIDList), IsNull(objectTypeIDList), IsNull(eventTypeIDList), IsNull(statsObjectIdentifierList), fromDate, toDate).ToList();
         }
@@ -168,15 +205,16 @@ namespace CHAOS.Statistics.Module.Standard
         #endregion
 
         #region helper methods
-        private string IsNull(int[] array)
-        {
-            if (array == null)
-                return null;
-            else
-                return string.Join(",", array);
-        }
 
-        private string IsNull(string[] array)
+        //private string IsNull(int array)
+        //{
+        //    if (array == null)
+        //        return null;
+        //    else
+        //        return string.Join(",", array);
+        //}
+
+        private string IsNull(string array)
         {
             if (array == null)
                 return null;

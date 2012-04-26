@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml.Linq;
-using Geckon.Portal.Test;
 using NUnit.Framework;
+using CHAOS.Portal.Test;
 
 namespace CHAOS.Statistics.StandardTest
 {

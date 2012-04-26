@@ -45,7 +45,7 @@ namespace CHAOS.Statistics.StandardTest
         {
             var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "test2403", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            var result = StatisticsModule.DayStats_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] {"test2403", "test2" }, DateTime.Now.AddDays(-1), DateTime.Now);
+            var result = StatisticsModule.DayStats_Get(1, null, null, "1, 2, 3, 4, 5", "test2403, test2", DateTime.Now.AddDays(-1), DateTime.Now);
 
             Assert.IsNotEmpty(result.ToList());
         }
@@ -55,11 +55,11 @@ namespace CHAOS.Statistics.StandardTest
         {
             var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            var result = StatisticsModule.DayStats_GetObjects(1, null, null, new int[] { 1, 2, 3, 4, 5 }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 25, "ASC");
+            var result = StatisticsModule.DayStats_GetObjects(1, null, null,  "1, 2, 3, 4, 5 ", DateTime.Now.AddDays(-1), DateTime.Now, 0, 25, "ASC");
 
             Assert.IsNotEmpty(result.ToList());
 
-            var result2 = StatisticsModule.DayStats_GetObjects(1, null, null, new int[] { 1, 2, 3, 4, 5 }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 25, "DESC");
+            var result2 = StatisticsModule.DayStats_GetObjects(1, null, null, " 1, 2, 3, 4, 5 ", DateTime.Now.AddDays(-1), DateTime.Now, 0, 25, "DESC");
 
             Assert.IsNotEmpty(result.ToList());
 
@@ -72,7 +72,7 @@ namespace CHAOS.Statistics.StandardTest
         {
             var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            var result = StatisticsModule.DayStats_GetTotal(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest, test2" }, DateTime.Now.AddDays(-1), DateTime.Now);
+            var result = StatisticsModule.DayStats_GetTotal(1, null, null, " 1, 2, 3, 4, 5 ",  "My objectIdentifiertest, test2", DateTime.Now.AddDays(-1), DateTime.Now);
 
             Assert.GreaterOrEqual(result.Count, 0);
         }
@@ -82,11 +82,11 @@ namespace CHAOS.Statistics.StandardTest
         {
             var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            var resultCity = StatisticsModule.DayStatsGeo_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest,test" }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "City");
+            var resultCity = StatisticsModule.DayStatsGeo_Get(1, null, null, "1, 2, 3, 4, 5", "My objectIdentifiertest,test", DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "City");
 
-            var resultCountry = StatisticsModule.DayStatsGeo_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest,test" }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "Country");
+            var resultCountry = StatisticsModule.DayStatsGeo_Get(1, null, null, "1, 2, 3, 4, 5", "My objectIdentifiertest,test", DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "Country");
 
-            var resultIP = StatisticsModule.DayStatsGeo_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest,test" }, DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "IP");
+            var resultIP = StatisticsModule.DayStatsGeo_Get(1, null, null, " 1, 2, 3, 4, 5 ", "My objectIdentifiertest,test", DateTime.Now.AddDays(-1), DateTime.Now, 0, 100, "ASC", "IP");
 
             Assert.IsNotEmpty(resultCity.ToList());
 
@@ -103,7 +103,7 @@ namespace CHAOS.Statistics.StandardTest
         {
             var returnValue = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            var result = StatisticsModule.HourStats_Get(1, null, null, new int[] { 1, 2, 3, 4, 5 }, new string[] { "My objectIdentifiertest,test" }, DateTime.Now.AddHours(-1), DateTime.Now);
+            var result = StatisticsModule.HourStats_Get(1, null, null, "1, 2, 3, 4, 5", "My objectIdentifiertest,test", DateTime.Now.AddHours(-1), DateTime.Now);
 
             Assert.IsNotEmpty(result.ToList());
         }
@@ -115,11 +115,11 @@ namespace CHAOS.Statistics.StandardTest
 
             var returnValue2 = StatisticsModule.Set("{17787A86-0A0E-48C0-BA47-1994C2055410}", "My objectIdentifiertest99", 1, 1, "My Channel", 3, 1, "My Object", "000.000.000.000", "Test city", "Test nation", 0);
 
-            var result = StatisticsModule.HourStats_GetObjects(1, null, null, new int[] { 1, 2, 3, 4, 5 }, DateTime.Now.AddHours(-1), DateTime.Now, 0, 25, "ASC");
+            var result = StatisticsModule.HourStats_GetObjects(1, null, null, "1, 2, 3, 4, 5", DateTime.Now.AddHours(-1), DateTime.Now, 0, 25, "ASC");
 
             Assert.IsNotEmpty(result.ToList());
 
-            var result2 = StatisticsModule.HourStats_GetObjects(1, null, null, new int[] { 1, 2, 3, 4, 5 }, DateTime.Now.AddHours(-1), DateTime.Now, 0, 25, "DESC");
+            var result2 = StatisticsModule.HourStats_GetObjects(1, null, null, "1, 2, 3, 4, 5", DateTime.Now.AddHours(-1), DateTime.Now, 0, 25, "DESC");
 
             Assert.IsNotEmpty(result.ToList());
 
